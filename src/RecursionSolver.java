@@ -10,7 +10,12 @@ public class RecursionSolver implements RecursionLabInterface {
         end = false;
         triangSize = 1;
         triangCounter = 0;
+        pointer1= 0;
+        pointer2 = 0;
+
     }
+    int pointer1;
+    int pointer2;
     int counter;
     int starcounter;
     boolean flag1;
@@ -67,6 +72,39 @@ public class RecursionSolver implements RecursionLabInterface {
     }
     public void posBeforeNeg(int arr[]){
 
+        if (pointer1 < arr.length && pointer2 < arr.length && pointer1 <= pointer2){
+            if (arr[pointer1] < 0 && arr[pointer2] > 0){
+                int temp = arr[pointer2];
+                arr[pointer2] = arr[pointer1];
+                arr[pointer1]= temp;
+                posBeforeNeg(arr);
+            }
+            else if(arr[pointer2] < 0){
+                pointer2++;
+                posBeforeNeg(arr);
+            }
+            else if(arr[pointer1] > 0){
+                pointer1++;
+                posBeforeNeg(arr);
+            }
+            else{
+                if (arr[pointer1] < 0){
+                    pointer2++;
+                }
+                else{
+                    pointer1++;
+                    pointer2++;
+                }
+                posBeforeNeg(arr);
+            }
+        }
+        else if (pointer2 < arr.length && pointer1 > pointer2){
+            pointer2++;
+            posBeforeNeg(arr);
+        }
+        else{
+            return;
+        }
     }
 
 }
