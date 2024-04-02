@@ -8,6 +8,8 @@ public class RecursionSolver implements RecursionLabInterface {
         flag2 = true;
         flag3 = true;
         end = false;
+        triangSize = 1;
+        triangCounter = 0;
     }
     int counter;
     int starcounter;
@@ -17,6 +19,11 @@ public class RecursionSolver implements RecursionLabInterface {
     boolean flag4;
     boolean end ;
     int triangSize;
+    int triangCounter;
+
+
+
+
     public void printTriangles(int size){
         if (flag3){
             triangSize = size;
@@ -30,15 +37,17 @@ public class RecursionSolver implements RecursionLabInterface {
         }
         if (size > 0 ) {
             if (flag2) {
-                System.out.print("_");
+                System.out.print(" ");
                 printTriangles(size - 1);
 
 
             }
             flag2 = false;
-            if (end){return;}
+            if (end && size == triangSize){flag1 = true;flag2 = true;flag3 = true; end = false;printTriangles(--triangSize);}
+            else if (end){return;}
+            else{}
 
-            if (starcounter > 0) {
+            if (starcounter > 0 && !end) {
 
                 System.out.print("* ");
 
