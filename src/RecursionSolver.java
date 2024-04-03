@@ -34,7 +34,12 @@ public class RecursionSolver implements RecursionLabInterface {
     public void printTriangles(int size){
         /*purpose of this if to set the triangle size so it does not change during the recursion*/
         if (flag3){
+
             triangSize = size;
+            if (triangSize <=0 ){
+                System.out.println("Size is too small");
+                return;
+            }
             flag3 = false;
         }
         /*
